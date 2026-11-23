@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="description" content="Explore handmade cakes, cookies and desserts at Sweet Heaven.">
+        <title>Our Menu | Sweet Heaven</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="menu.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    </head>
+    <body>
+        <header class="top-header">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <i class="fa-solid fa-cookie-bite"></i> Sweet<span>Heaven</span>
+                </a>
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html">Home</a>
+                    <a href="menu.html" aria-current="page">Products</a>
+                    <a href="product.html">Featured Product</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+                <button class="nav-cart menu-cart-button" id="openCart" aria-label="Open shopping bag">
+                    <i class="fa-solid fa-bag-shopping"></i> 
+                    My Bag <span id="cartCount" class="cart-count">0</span>
+                </button>
+            </nav>
+        </header>
+<main>
+    <section class="menu-hero">
+        <span class="eyebrow">Made with love, served with joy</span>
+        <h1>A little sweetness for every moment.</h1>
+        <p>Discover our handcrafted cakes, cookies and delicate desserts — freshly made to brighten your day.</p>
+        <a href="#shop" class="btn primary">Explore the menu 
+            <i class="fa-solid fa-arrow-down"></i>
+        </a>
+    </section>
+    <section id="shop" class="menu-shop">
+        <div class="menu-heading"><div>
+            <span class="eyebrow">The Sweet Collection</span>
+            <h2>Find your new favorite</h2>
+            <p>Something lovely is waiting for you.</p>
+        </div>
+        <span id="resultsCount" class="results-count" aria-live="polite"></span>
+    </div>
+    <div class="menu-toolbar">
+        <div class="category-filters" role="group" aria-label="Filter by category">
+            <button class="filter-btn active" data-category="all" aria-pressed="true">All treats</button>
+            <button class="filter-btn" data-category="cakes" aria-pressed="false">Cakes</button>
+            <button class="filter-btn" data-category="cookies" aria-pressed="false">Cookies</button>
+            <button class="filter-btn" data-category="desserts" aria-pressed="false">Desserts</button>
+        </div>
+        <div class="menu-controls">
+            <label class="search-wrap">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span class="sr-only">Search products</span>
+                <input id="productSearch" type="search" placeholder="Search something sweet..."></label>
+                <label class="sort-wrap">
+                    <span class="sr-only">Sort products</span>
+                    <select id="productSort">
+                        <option value="featured">Featured</option>
+                        <option value="price-asc">Price: low to high</option>
+                        <option value="price-desc">Price: high to low</option>
+                        <option value="name">Name: A–Z</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+        <div id="productGrid" class="menu-grid" aria-live="polite"></div>
+        <p id="emptyState" class="empty-state" hidden>No treats found. Try another search or category.</p>
+    </section>
+    <section class="menu-note">
+        <i class="fa-solid fa-heart"></i>
+        <div>
+            <h2>Every treat has a little story.</h2>
+            <p>Beautifully baked, thoughtfully presented, and made for sharing.</p>
+        </div>
+        <a href="contact.html" class="btn primary">Get in touch</a>
+    </section>
+</main>
+<footer class="footer">
+    <div class="logo">
+        <i class="fa-solid fa-cookie-bite"></i>
+         Sweet<span>Heaven</span>
+    </div>
+        <p>Online handmade dessert shop concept.</p>
+    </footer>
+    <div id="cartBackdrop" class="cart-backdrop" hidden></div>
+    <aside id="cartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" aria-hidden="true">
+        <div class="cart-header">
+            <div>
+                <span class="eyebrow">Your sweet picks</span>
+                <h2 id="cartTitle">Shopping Bag</h2>
+            </div>
+            <button id="closeCart" class="icon-button" aria-label="Close shopping bag">×</button>
+        </div>
+        <div id="cartItems" class="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-subtotal">
+            <span>Subtotal</span>
+            <strong id="cartSubtotal">£0.00</strong>
+        </div>
+        <p class="cart-disclaimer">Portfolio demo only — checkout and payment are not available.</p>
+        <button id="checkoutButton" class="checkout-button" disabled>Checkout unavailable (demo)</button>
+        <button id="continueShopping" class="continue-button">Continue shopping</button>
+    </div>
+    </aside>
+    <div id="cartToast" class="cart-toast" role="status" aria-live="polite"></div>
+    <button id="mobileCart" class="floating-cart" aria-label="Open shopping bag">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span id="mobileCartCount">0</span>
+    </button>
+    <script src="script.js"></script>
+    <script src="menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get in touch with Sweet Heaven. We'd love to hear from you.">
+  <title>Contact Us | Sweet Heaven</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="contact.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <script src="contact.js" defer></script>
+</head>
+
+<body class="contact-page">
+
+  <!-- HEADER -->
+  <header class="top-header">
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <i class="fa-solid fa-cookie-bite"></i>
+        Sweet<span>Heaven</span>
+      </a>
+
+      <div class="nav-links" id="contactNavLinks">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="active" aria-current="page">Contact</a>
+      </div>
+
+      <button type="button" class="contact-menu-toggle"
+        id="contactMenuToggle" aria-label="Toggle navigation"
+        aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="contact-hero">
+      <span class="contact-label">WE'D LOVE TO HEAR FROM YOU</span>
+      <h1>Let's Get in <em>Touch.</em></h1>
+      <p>
+        Have a question, a sweet idea, or just want to say hello?
+        We're always happy to hear from you.
+      </p>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section">
+
+      <!-- CONTACT INFORMATION -->
+      <div class="contact-info">
+        <span class="contact-label">SAY HELLO</span>
+        <h2>Let's Talk About<br>Something Sweet.</h2>
+
+        <p class="contact-intro">
+          Whether you're curious about our treats or
+          have something special in mind, feel free
+          to leave us a message.
+        </p>
+
+        <div class="contact-info-card">
+          <div class="contact-icon">
+            <i class="fa-solid fa-envelope"></i>
+          </div>
+          <div>
+            <h3>Email Us</h3>
+            <p>hello@sweetheaven.example</p>
+            <small>Demo contact address</small>
+          </div>
+        </div>
+
+        <div class="contact-info-card">
+          <div class="contact-icon">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div>
+            <h3>Our Location</h3>
+            <p>London, United Kingdom</p>
+            <small>Concept location — no physical shop</small>
+          </div>
+        </div>
+
+        <div class="contact-info-card">
+          <div class="contact-icon">
+            <i class="fa-solid fa-clock"></i>
+          </div>
+          <div>
+            <h3>Opening Hours</h3>
+            <p>Monday – Saturday</p>
+            <small>9:00 AM – 6:00 PM (demo)</small>
+          </div>
+        </div>
+
+        <div class="contact-social">
+          <h3>Follow Our Sweet Journey</h3>
+          <div class="contact-social-links">
+            <span aria-label="Instagram concept icon">
+              <i class="fa-brands fa-instagram"></i>
+            </span>
+            <span aria-label="Pinterest concept icon">
+              <i class="fa-brands fa-pinterest-p"></i>
+            </span>
+            <span aria-label="Facebook concept icon">
+              <i class="fa-brands fa-facebook-f"></i>
+            </span>
+          </div>
+          <small>Social profiles are not connected in this demo.</small>
+        </div>
+      </div>
+
+      <!-- CONTACT FORM -->
+      <div class="contact-form-wrapper">
+        <div class="contact-form-heading">
+          <span class="contact-label">SEND A LITTLE NOTE</span>
+          <h2>Send Us a Message</h2>
+          <p>Fill in the form below. We'd love to hear from you!</p>
+        </div>
+
+        <form id="contactForm" novalidate>
+
+          <div class="contact-form-row">
+            <div class="contact-field">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName"
+                name="firstName" placeholder="Your first name"
+                autocomplete="given-name" required>
+              <small class="field-error" id="firstNameError"></small>
+            </div>
+
+            <div class="contact-field">
+              <label for="lastName">Last Name *</label>
+              <input type="text" id="lastName"
+                name="lastName" placeholder="Your last name"
+                autocomplete="family-name" required>
+              <small class="field-error" id="lastNameError"></small>
+            </div>
+          </div>
+
+          <div class="contact-field">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email"
+              name="email" placeholder="you@example.com"
+              autocomplete="email" required>
+            <small class="field-error" id="emailError"></small>
+          </div>
+
+          <div class="contact-field">
+            <label for="subject">Subject *</label>
+            <select id="subject" name="subject" required>
+              <option value="">Choose a subject</option>
+              <option value="general">General Enquiry</option>
+              <option value="products">Product Question</option>
+              <option value="custom">Custom Order</option>
+              <option value="feedback">Feedback</option>
+            </select>
+            <small class="field-error" id="subjectError"></small>
+          </div>
+
+          <div class="contact-field">
+            <label for="message">Your Message *</label>
+            <textarea id="message" name="message"
+              rows="6" placeholder="Tell us what's on your mind..."
+              maxlength="1000" required></textarea>
+            <div class="contact-message-meta">
+              <small class="field-error" id="messageError"></small>
+              <small id="characterCount">0 / 1000</small>
+            </div>
+          </div>
+
+          <button type="submit" class="contact-submit">
+            <span>Send Message</span>
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+
+          <p class="contact-form-note">
+            <i class="fa-solid fa-circle-info"></i>
+            Demo form — no message will actually be sent.
+          </p>
+
+          <div id="formStatus" class="form-status"
+            role="status" aria-live="polite" hidden></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- BOTTOM CTA -->
+    <section class="contact-bottom">
+      <i class="fa-solid fa-heart"></i>
+      <span class="contact-label">SOMETHING SWEET IS WAITING</span>
+      <h2>Craving Something Delicious?</h2>
+      <p>Take a look at our collection of delightful treats.</p>
+      <a href="menu.html" class="contact-shop-btn">
+        Explore Our Menu
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="contact-footer">
+    <a href="index.html" class="logo">
+      <i class="fa-solid fa-cookie-bite"></i>
+      Sweet<span>Heaven</span>
+    </a>
+    <p>Made with love, served with joy.</p>
+
+    <div class="contact-footer-links">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Products</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <small>© Sweet Heaven. Portfolio concept project.</small>
+  </footer>
+
+</body>
+</html>

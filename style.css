@@ -1,0 +1,454 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #fff8f2;
+  color: #4b2e25;
+  line-height: 1.7;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+.top-header {
+  background: rgba(255, 248, 242, 0.92);
+  backdrop-filter: blur(16px);
+  padding: 18px 7%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #f2d7df;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 28px;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 900;
+  color: #4b2e25;
+}
+
+.logo i,
+.logo span {
+  color: #e48ca6;
+}
+
+.logo i {
+  margin-right: 8px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.nav-links a:hover {
+  color: #e48ca6;
+}
+
+.nav-cart {
+  background: #5c3a2e;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.shop-hero {
+  margin: 32px 7% 0;
+  min-height: 78vh;
+  border-radius: 42px;
+  background:
+    linear-gradient(90deg, rgba(75, 46, 37, 0.78), rgba(75, 46, 37, 0.18)),
+    url('pictures/cup\ cake\ 2.avif');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  max-width: 720px;
+  padding: 72px;
+  color: #fff;
+}
+
+.eyebrow,
+.section-title span,
+.cta-section span {
+  color: #e48ca6;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1.8px;
+}
+
+.hero-overlay h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 46px;
+  line-height: 1.18;
+  margin: 18px 0 22px;
+  color: #fff;
+  text-shadow: 0 3px 18px rgba(0,0,0,0.35);
+  -webkit-text-stroke: 0.25px rgba(255,255,255,0.2);
+}
+
+.hero-overlay p {
+  font-size: 17px;
+  color: #fff1f5;
+  max-width: 620px;
+  margin-bottom: 34px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 900;
+  transition: 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn.primary {
+  background: #e48ca6;
+  color: #fff;
+  box-shadow: 0 16px 36px rgba(228, 140, 166, 0.35);
+}
+
+.btn.light {
+  background: #fff8f2;
+  color: #4b2e25;
+}
+
+.section {
+  padding: 90px 7%;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.section-title h2,
+.cta-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  color: #4b2e25;
+  margin-top: 8px;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr 0.9fr;
+  gap: 24px;
+}
+
+.category-card {
+  min-height: 330px;
+  border-radius: 34px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: end;
+  padding: 30px;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 24px 60px rgba(92, 58, 46, 0.14);
+}
+
+.category-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(75, 46, 37, 0.86), transparent);
+}
+
+.category-card div {
+  position: relative;
+  z-index: 2;
+}
+
+.category-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+
+.category-card p {
+  color: #fff1f5;
+}
+
+.cakes {
+  background-image: url('pictures/colorfull\ cake.avif');
+}
+
+.cookies {
+  background-image: url('pictures/Chocolate\ Chip\ Cookie\ 4.jpeg');
+}
+
+.desserts {
+  background-image: url('pictures/Panna\ Cotta\ 4.avif');
+}
+
+.pink-section {
+  background: #f7d6e0;
+}
+
+.products-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 30px;
+  overflow: hidden;
+  border: 1px solid #f1c6d3;
+  box-shadow: 0 22px 55px rgba(92, 58, 46, 0.1);
+}
+
+.product-card img {
+  height: 260px;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 28px 24px;
+}
+
+.product-info span {
+  color: #e48ca6;
+  font-weight: 900;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.product-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  margin: 8px 0;
+}
+
+.product-info p {
+  color: #7a5548;
+  margin-bottom: 20px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price-row strong {
+  font-size: 24px;
+  color: #4b2e25;
+}
+
+.price-row a {
+  color: #e48ca6;
+  font-weight: 900;
+}
+
+.features-section {
+  padding: 80px 7%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.feature-box {
+  background: #fff;
+  padding: 38px 30px;
+  border-radius: 30px;
+  border: 1px solid #f1c6d3;
+  text-align: center;
+}
+
+.feature-box i {
+  font-size: 36px;
+  color: #e48ca6;
+  margin-bottom: 18px;
+}
+
+.feature-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+}
+
+.feature-box p {
+  color: #7a5548;
+}
+
+.cta-section {
+  margin: 20px 7% 80px;
+  padding: 76px 7%;
+  border-radius: 40px;
+  background:
+    linear-gradient(90deg, rgba(255,248,242,0.96), rgba(255,248,242,0.68)),
+    url('pictures/cup\ cake\ 1.avif');
+  background-size: cover;
+  background-position: center;
+}
+
+.cta-section p {
+  color: #7a5548;
+  margin: 14px 0 28px;
+  max-width: 560px;
+}
+
+.footer {
+  background: #5c3a2e;
+  color: #fff8f2;
+  padding: 32px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer p {
+  color: #f7d6e0;
+}
+
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: #5c3a2e;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  .category-grid,
+  .products-row,
+  .features-section {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-overlay h1 {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 760px) {
+  .top-header {
+    padding: 16px 5%;
+  }
+
+  .navbar {
+    position: relative;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 64px;
+    right: 0;
+    left: 0;
+    background: #fff8f2;
+    border: 1px solid #f1c6d3;
+    border-radius: 22px;
+    padding: 14px;
+    box-shadow: 0 22px 55px rgba(92, 58, 46, 0.14);
+  }
+
+  .nav-links.active {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .nav-links a {
+    padding: 12px 14px;
+  }
+
+  .menu-toggle {
+    display: grid;
+    place-items: center;
+  }
+
+  .nav-cart {
+    display: none;
+  }
+
+  .shop-hero {
+    margin: 20px 5% 0;
+    min-height: 72vh;
+    border-radius: 28px;
+  }
+
+  .hero-overlay {
+    padding: 42px 26px;
+  }
+
+  .hero-overlay h1 {
+    font-size: 31px;
+  }
+
+  .section,
+  .features-section {
+    padding: 65px 5%;
+  }
+
+  .category-grid,
+  .products-row,
+  .features-section {
+    grid-template-columns: 1fr;
+  }
+
+  .category-card {
+    min-height: 260px;
+  }
+
+  .section-title h2,
+  .cta-section h2 {
+    font-size: 32px;
+  }
+
+  .cta-section {
+    margin: 10px 5% 60px;
+    padding: 46px 24px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}

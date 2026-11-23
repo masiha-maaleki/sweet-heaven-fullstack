@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore a handmade Sweet Heaven dessert.">
+  <title>Product Details | Sweet Heaven</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="product.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <script src="product.js" defer></script>
+</head>
+<body>
+    <header class="top-header">
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-cookie-bite"></i> Sweet<span>Heaven</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="menu.html">Products</a>
+                <a href="product.html" aria-current="page">Featured Product</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <button type="button" class="product-nav-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰    
+            </button>
+            <button type="button" class="product-bag" id="openCart"><i class="fa-solid fa-bag-shopping"></i> My Bag <span id="cartCount">0</span>
+            </button>
+        </nav>
+    </header>
+    <main class="product-main">
+        <div class="breadcrumbs">
+            <a href="index.html">Home</a>
+            <span>/</span>
+            <a href="menu.html">Products</a>
+            <span>/</span>
+            <span id="breadcrumbName">Product</span>
+        </div>
+        <section class="product-layout" aria-labelledby="productTitle">
+            <div class="product-gallery">
+                <div class="main-photo">
+                    <img id="mainPhoto" src="pictures/Moist%20Chocolate%20Cake%201.jpg" alt="Moist Chocolate Cake">
+                </div>
+                <div class="photo-thumbnails" id="photoThumbnails" aria-label="Product photos">
+                </div>
+            </div>
+            <div class="product-information">
+                <span class="product-eyebrow">HANDMADE WITH LOVE</span>
+                <span class="product-category" id="productCategory">Cakes
+                </span>
+                <h1 id="productTitle">Moist Chocolate Cake</h1>
+                <p class="product-price" id="productPrice">£18.00</p>
+                <p class="product-description" id="productDescription"></p>
+                <div class="product-features"><span>
+                    <i class="fa-solid fa-heart"></i> 
+                    Carefully crafted</span>
+                    <span>
+                    <i class="fa-solid fa-cookie-bite"></i> 
+                    Sweet Heaven original</span>
+                </div>
+                <label class="quantity-label" for="quantity">Quantity</label>
+                <div class="purchase-row">
+                    <div class="quantity-stepper">
+                        <button id="decreaseQuantity" type="button" aria-label="Decrease quantity">−</button>
+                        <input id="quantity" type="number" min="1" max="99" value="1" inputmode="numeric">
+                        <button id="increaseQuantity" type="button" aria-label="Increase quantity">+
+                        </button>
+                    </div>
+                    <button type="button" id="addToCart" class="add-product">
+                        <i class="fa-solid fa-bag-shopping"></i> 
+                        Add to Bag</button>
+                </div>
+            <p class="product-note">Portfolio demo only — online payment is not available.</p>
+            <p class="product-feedback" id="productFeedback" role="status" aria-live="polite"></p>
+            </div>
+        </section>
+        <section class="related-section">
+            <div class="related-heading">
+                <div>
+                    <span class="product-eyebrow">MORE TO LOVE</span>
+                    <h2>You may also like</h2>
+                </div>
+                <a href="menu.html">View all treats 
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="related-grid" id="relatedProducts"></div>
+        </section>
+    </main>
+    <footer class="product-footer">
+        <a href="index.html" class="logo">
+            <i class="fa-solid fa-cookie-bite"></i> 
+            Sweet<span>Heaven</span>
+        </a>
+        <p>Made with love, served with joy.</p>
+    </footer>
+    <div class="product-overlay" id="cartBackdrop" hidden></div>
+    <aside class="product-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Shopping bag" aria-hidden="true">
+        <div class="drawer-top">
+            <div>
+                <span>YOUR SWEET PICKS</span>
+                <h2>Shopping Bag</h2>
+            </div>
+            <button id="closeCart" type="button" aria-label="Close shopping bag">×
+            </button>
+        </div>
+        <div id="cartItems" class="drawer-items">
+        </div>
+        <div class="drawer-bottom">
+            <p>Subtotal <strong id="cartSubtotal">£0.00</strong>
+            </p>
+            <small>Portfolio demo only — checkout and payment are not available.</small>
+            <button type="button" disabled class="checkout-button">Checkout unavailable (demo)</button>
+            <button type="button" id="continueShopping" class="continue-button">Continue shopping</button>
+        </div>
+    </aside>
+</body>
+</html>
