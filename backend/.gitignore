@@ -10,3 +10,7 @@ node_modules/
 # Logs
 *.log
 npm-debug.log*
+
+
+# Local admin setup utility
+create-admin.js

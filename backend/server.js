@@ -1,6 +1,13 @@
 
+
+require("dotenv").config();
+
+const { rateLimit } = require("express-rate-limit");
 const express = require("express");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const db = require("./db");
+
 
 const app = express();
 const PORT = 3000;
@@ -22,6 +29,144 @@ app.use((req, res, next) => {
   next();
 });
 
+
+const adminLoginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 5,
+  standardHeaders: "draft-8",
+  legacyHeaders: false,
+  message: {
+    message: "Too many login attempts. Please try again in 15 minutes."
+  }
+});
+
+
+app.post("/api/admin/login", adminLoginLimiter, async (req, res) => {
+  const { username, password } = req.body || {};
+
+  if (
+    typeof username !== "string" ||
+    typeof password !== "string" ||
+    !username.trim() ||
+    !password
+  ) {
+    return res.status(400).json({
+      message: "Username and password are required"
+    });
+  }
+
+  try {
+    const result = await db.query(
+      "SELECT id, username, password_hash FROM admins WHERE username = $1",
+      [username.trim()]
+    );
+
+    const admin = result.rows[0];
+
+    if (!admin) {
+      return res.status(401).json({
+        message: "Invalid username or password"
+      });
+    }
+
+    const passwordIsValid = await bcrypt.compare(
+      password,
+      admin.password_hash
+    );
+
+    if (!passwordIsValid) {
+      return res.status(401).json({
+        message: "Invalid username or password"
+      });
+    }
+
+    if (!process.env.JWT_SECRET) {
+      console.error("JWT_SECRET is missing");
+      return res.status(500).json({
+        message: "Server configuration error"
+      });
+    }
+
+    const token = jwt.sign(
+      {
+        sub: String(admin.id),
+        username: admin.username
+      },
+      process.env.JWT_SECRET,
+      {
+        algorithm: "HS256",
+        expiresIn: "1h"
+      }
+    );
+
+    return res.json({
+      message: "Login successful",
+      token,
+      tokenType: "Bearer",
+      expiresIn: 3600
+    });
+
+  } catch (error) {
+    console.error("Admin login error:", error);
+
+    return res.status(500).json({
+      message: "Unable to log in"
+    });
+  }
+});
+
+
+function requireAdmin(req, res, next) {
+  const authHeader = req.headers.authorization;
+
+  if (
+    typeof authHeader !== "string" ||
+    !authHeader.startsWith("Bearer ")
+  ) {
+    return res.status(401).json({
+      message: "Authentication required"
+    });
+  }
+
+  const token = authHeader.slice(7).trim();
+
+  if (!token) {
+    return res.status(401).json({
+      message: "Authentication required"
+    });
+  }
+
+  if (!process.env.JWT_SECRET) {
+    console.error("JWT_SECRET is missing");
+
+    return res.status(500).json({
+      message: "Server configuration error"
+    });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET, {
+      algorithms: ["HS256"]
+    });
+
+    if (!decoded.sub) {
+      return res.status(401).json({
+        message: "Invalid authentication token"
+      });
+    }
+
+    req.admin = {
+      id: decoded.sub,
+      username: decoded.username
+    };
+
+    next();
+  } catch (error) {
+    return res.status(401).json({
+      message: "Invalid or expired authentication token"
+    });
+  }
+}
 
 
 app.get("/", (req, res) => {
@@ -84,7 +229,7 @@ app.get("/api/products/:id", async (req, res) => {
 });
 
 
-app.post("/api/products", async (req, res) => {
+app.post("/api/products", requireAdmin, async (req, res) => {
   const {
     id,
     name,
@@ -148,7 +293,7 @@ app.post("/api/products", async (req, res) => {
 });
 
 
-app.patch("/api/products/:id", async (req, res) => {
+app.patch("/api/products/:id", requireAdmin, async (req, res) => {
   const allowedFields = [
     "name",
     "category",
@@ -225,7 +370,7 @@ app.patch("/api/products/:id", async (req, res) => {
 });
 
 
-app.delete("/api/products/:id", async (req, res) => {
+app.delete("/api/products/:id", requireAdmin, async (req, res) => {
   try {
     const result = await db.query(
       `DELETE FROM products
