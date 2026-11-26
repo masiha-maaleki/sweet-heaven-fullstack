@@ -87,7 +87,9 @@ async function loadProducts() {
 
   try {
     const response = await fetch(
-      "http://localhost:3000/api/products"
+      
+    "https://sweet-heaven-fullstack.onrender.com/api/products"
+
     );
 
     if (!response.ok) {
