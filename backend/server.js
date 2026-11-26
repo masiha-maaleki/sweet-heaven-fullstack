@@ -16,13 +16,22 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// Allow local development frontend
+
+const allowedOrigins = [
+  "https://masiha-maaleki.github.io"
+];
+
+// Allow local development and GitHub Pages frontend
 app.use((req, res, next) => {
   const origin = req.headers.origin;
 
+  const isLocalOrigin =
+    typeof origin === "string" &&
+    /^http:\/\/(localhost|127\.0\.0\.1):\d+$/.test(origin);
+
   if (
     origin &&
-    /^http:\/\/(localhost|127\.0\.0\.1):\d+$/.test(origin)
+    (isLocalOrigin || allowedOrigins.includes(origin))
   ) {
     res.setHeader("Access-Control-Allow-Origin", origin);
     res.setHeader("Vary", "Origin");
@@ -30,6 +39,7 @@ app.use((req, res, next) => {
 
   next();
 });
+
 
 
 const adminLoginLimiter = rateLimit({
