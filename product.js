@@ -6,7 +6,9 @@
 // Backend API Integration
 // =====================================
 
-const API_URL = "http://localhost:3000/api/products";
+
+const API_URL = "https://sweet-heaven-fullstack.onrender.com/api/products";
+
 const STORAGE_KEY = "sweet-heaven-cart-v1";
 
 const $ = (id) => document.getElementById(id);
@@ -516,9 +518,18 @@ async function initializeProductPage() {
 
   const productId = params.get("id") || "chocolate-cake";
 
-  const addButton = $("addToCart");
+  
+const addButton = $("addToCart");
 
-  addButton.disabled = true;
+addButton.disabled = true;
+
+// Show saved cart count immediately
+const savedCartCount = Object.values(cart).reduce(
+  (total, quantity) => total + quantity,
+  0
+);
+
+$("cartCount").textContent = savedCartCount;
 
   $("productTitle").textContent = "Loading product...";
   $("productDescription").textContent = "";
