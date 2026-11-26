@@ -44,6 +44,7 @@ $('productSearch').addEventListener('input',renderProducts);$('productSort').add
 
 $('productGrid').addEventListener('click', e => {
 
+
   // Add to Cart button
   const addButton = e.target.closest('[data-add]');
 
@@ -53,45 +54,7 @@ $('productGrid').addEventListener('click', e => {
     cart[id] = Math.min(99, (cart[id] || 0) + 1);
 
     save();
-    
-async function loadProducts() {
-  const grid = document.getElementById("productGrid");
-
-  try {
-    const response = await fetch(
-      "http://localhost:3000/api/products"
-    );
-
-    if (!response.ok) {
-      throw new Error("Failed to load products");
-    }
-
-    PRODUCTS = await response.json();
-
-    // Remove invalid or outdated cart items
-    for (const id of Object.keys(cart)) {
-      if (!PRODUCTS.some(p => p.id === id)) {
-        delete cart[id];
-      }
-    }
-
-    save();
-
-    renderProducts();
     renderCart();
-
-    console.log("Products loaded from API:", PRODUCTS);
-
-  } catch (error) {
-    console.error(error);
-
-    grid.textContent =
-      "Unable to load products. Please check the server.";
-  }
-}
-
-loadProducts();
-
     toast('Added to your bag!');
     return;
   }
@@ -113,6 +76,7 @@ loadProducts();
   }
 
 });
+
 
 $('cartItems').addEventListener('click',e=>{const btn=e.target.closest('button[data-plus],button[data-minus],button[data-remove]');if(!btn)return;const id=btn.dataset.plus||btn.dataset.minus||btn.dataset.remove;if(!(id in cart))return;if(btn.hasAttribute('data-remove'))delete cart[id];else if(btn.hasAttribute('data-plus'))cart[id]=Math.min(99,cart[id]+1);else{cart[id]--;if(cart[id]<=0)delete cart[id];}save();renderCart();});
 $('openCart').addEventListener('click',openCart);$('mobileCart').addEventListener('click',openCart);$('closeCart').addEventListener('click',closeCart);$('continueShopping').addEventListener('click',closeCart);$('cartBackdrop').addEventListener('click',closeCart);
