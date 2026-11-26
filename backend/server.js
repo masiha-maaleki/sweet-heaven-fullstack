@@ -270,9 +270,21 @@ app.post("/api/products", requireAdmin, async (req, res) => {
     !name.trim() ||
     typeof category !== "string" ||
     !category.trim() ||
-    typeof price !== "number" ||
-    !Number.isFinite(price) ||
-    price < 0
+    
+typeof price !== "number" ||
+!Number.isFinite(price) ||
+price < 0 ||
+price > 99999999.99 ||
+id.trim().length > 100 ||
+name.trim().length > 200 ||
+category.trim().length > 100 ||
+(image != null &&
+  (typeof image !== "string" || image.length > 2048)) ||
+(description != null &&
+  (typeof description !== "string" || description.length > 5000)) ||
+(tag != null &&
+  (typeof tag !== "string" || tag.length > 100))
+
   ) {
     return res.status(400).json({
       message: "Invalid product information"
@@ -334,28 +346,44 @@ app.patch("/api/products/:id", requireAdmin, async (req, res) => {
     });
   }
 
+
   // Validate input values
   for (const [key, value] of updates) {
     if (key === "price") {
       if (
         typeof value !== "number" ||
         !Number.isFinite(value) ||
-        value < 0
+        value < 0 ||
+        value > 99999999.99
       ) {
         return res.status(400).json({
           message: "Invalid price"
         });
       }
-    } else if (
-      typeof value !== "string" ||
-      ((key === "name" || key === "category") &&
-        !value.trim())
-    ) {
-      return res.status(400).json({
-        message: `Invalid value for ${key}`
-      });
+    } else {
+      const maxLengths = {
+        name: 200,
+        category: 100,
+        image: 2048,
+        description: 5000,
+        tag: 100
+      };
+
+      if (
+        typeof value !== "string" ||
+        value.length > maxLengths[key] ||
+        (
+          (key === "name" || key === "category") &&
+          !value.trim()
+        )
+      ) {
+        return res.status(400).json({
+          message: `Invalid value for ${key}`
+        });
+      }
     }
   }
+
 
   const fields = updates.map(
     ([key], index) => `${key} = $${index + 1}`
