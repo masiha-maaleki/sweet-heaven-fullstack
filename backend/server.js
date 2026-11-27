@@ -21,7 +21,8 @@ const allowedOrigins = [
   "https://masiha-maaleki.github.io"
 ];
 
-// Allow local development and GitHub Pages frontend
+
+ // Allow local development and GitHub Pages frontend
 app.use((req, res, next) => {
   const origin = req.headers.origin;
 
@@ -29,18 +30,31 @@ app.use((req, res, next) => {
     typeof origin === "string" &&
     /^http:\/\/(localhost|127\.0\.0\.1):\d+$/.test(origin);
 
-  if (
+  const isAllowedOrigin =
     origin &&
-    (isLocalOrigin || allowedOrigins.includes(origin))
-  ) {
+    (isLocalOrigin || allowedOrigins.includes(origin));
+
+  if (isAllowedOrigin) {
     res.setHeader("Access-Control-Allow-Origin", origin);
     res.setHeader("Vary", "Origin");
+
+    res.setHeader(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+    );
+
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "Content-Type, Authorization"
+    );
+  }
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(isAllowedOrigin ? 204 : 403);
   }
 
   next();
 });
-
-
 
 const adminLoginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
